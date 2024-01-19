@@ -1,4 +1,4 @@
-import {Lightformer, OrbitControls, Sky, useHelper} from "@react-three/drei";
+import {Lightformer, OrbitControls, Sky, Sparkles, useHelper} from "@react-three/drei";
 import {useControls} from "leva";
 import {useRef} from "react";
 import * as THREE from "three";
@@ -25,6 +25,15 @@ const Scene = () => {
             />
 
             <OrbitControls/>
+
+            <Sparkles
+                count={300}
+                speed={0.2}
+                opacity={3}
+                color="#68C2ED"
+                size={1}
+                scale={[10, 10, 10]}
+            />
 
             <Sky sunPosition={sunPosition} />
 
