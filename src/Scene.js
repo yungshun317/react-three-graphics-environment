@@ -1,4 +1,4 @@
-import {Lightformer, OrbitControls, useHelper} from "@react-three/drei";
+import {Lightformer, OrbitControls, Sky, useHelper} from "@react-three/drei";
 import {useControls} from "leva";
 import {useRef} from "react";
 import * as THREE from "three";
@@ -7,6 +7,10 @@ const Scene = () => {
     const directionaLight = useRef();
     useHelper(directionaLight, THREE.DirectionalLightHelper, 1);
     console.log(directionaLight);
+
+    const { sunPosition } = useControls("sky", {
+        sunPosition: { value: [0, 1, 0] },
+    });
 
     const { meshIntensity } = useControls("meshIntensity", {
         meshIntensity: { value: 1, min: 0, max: 5 },
@@ -21,6 +25,8 @@ const Scene = () => {
             />
 
             <OrbitControls/>
+
+            <Sky sunPosition={sunPosition} />
 
             <mesh position-z={-1} scale={5}>
                 <planeGeometry/>
