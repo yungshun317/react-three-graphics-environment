@@ -1,4 +1,4 @@
-import {Cloud, Lightformer, OrbitControls, Sky, Sparkles, Stars, useHelper} from "@react-three/drei";
+import {Cloud, Environment, Lightformer, OrbitControls, Sky, Sparkles, Stars, useHelper} from "@react-three/drei";
 import {useControls} from "leva";
 import {useRef} from "react";
 import * as THREE from "three";
@@ -14,6 +14,12 @@ const Scene = () => {
 
     const { meshIntensity } = useControls("meshIntensity", {
         meshIntensity: { value: 1, min: 0, max: 5 },
+    });
+
+    const { height, radius, scale } = useControls("ground", {
+        height: { value: 6, min: 0, max: 10 },
+        radius: { value: 60, min: 0, max: 100 },
+        scale: { value: 70, min: 0, max: 100 },
     });
 
     return (
@@ -45,14 +51,14 @@ const Scene = () => {
                 speed={1}
             /> */ }
 
-            <Cloud
+            { /* <Cloud
                 opacity={1}
                 speed={0.2}
                 width={10}
                 depth={1.5}
                 segments={40}
                 depthTest={false}
-            />
+            /> */ }
 
             { /* <Sky sunPosition={sunPosition} /> */ }
 
@@ -63,8 +69,13 @@ const Scene = () => {
 
             { /* <Lightformer position-z={-1} scale={5} color="orange" intensity={5} /> */ }
 
+            <Environment
+                files="./static/env-maps/1.hdr"
+                ground={{ height: height, radius: radius, scale: scale }}
+            />
+
             <mesh castShadow position-y={1}>
-                <boxGeometry/>
+                <boxGeometry />
                 <meshStandardMaterial color="#C7CAC7" envMapIntensity={meshIntensity} />
             </mesh>
 
