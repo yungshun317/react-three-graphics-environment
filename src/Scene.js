@@ -70,7 +70,9 @@ const Scene = () => {
             { /* <Lightformer position-z={-1} scale={5} color="orange" intensity={5} /> */ }
 
             <Environment
-                files="./static/env-maps/1.hdr"
+                // files="./static/env-maps/1.hdr"
+                // files={['./static/env-maps/px.png', './static/env-maps/nx.png', './static/env-maps/py.png', './static/env-maps/ny.png', './static/env-maps/pz.png', './static/env-maps/nz.png']}
+                preset={"city"}
                 ground={{ height: height, radius: radius, scale: scale }}
             />
 
